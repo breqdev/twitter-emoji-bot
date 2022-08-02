@@ -16,10 +16,10 @@ auth = tweepy.OAuth1UserHandler(
 
 api = tweepy.API(auth)
 
-emojis = ["🦀", "🎈", "👗", "☕️", "🐶", "🐍", "🎛", "🎮", "💜", "🏳️‍🌈", "🚃"]
+emojis = ["🦀", "🎈", "👗", "☕️", "🐶", "🐍", "🎛", "🎮", "💜", "🏳️‍🌈", "🚃", "🥳", "👩‍💻"]
 
 
-@aiocron.crontab("*/30 * * * *")
+@aiocron.crontab("*/5 * * * *")
 async def replace_emoji():
     emoji = random.choice(emojis)
     print("Replacing emoji with: " + emoji)
