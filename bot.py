@@ -19,7 +19,7 @@ api = tweepy.API(auth)
 emojis = ["🦀", "🎈", "👗", "☕️", "🐶", "🐍", "🎛", "🎮", "💜", "🏳️‍🌈", "🚃", "🥳", "👩‍💻"]
 
 
-@aiocron.crontab("*/5 * * * *")
+@aiocron.crontab("*/1 * * * *")
 async def replace_emoji():
     emoji = random.choice(emojis)
     print("Replacing emoji with: " + emoji)
@@ -27,11 +27,4 @@ async def replace_emoji():
     api.update_profile(name=f"Brooke Chalmers 🏳️‍⚧️ // {emoji}")
 
 
-replace_emoji.start()
-
-
-async def main():
-    await asyncio.Event().wait()
-
-
-asyncio.run(main())
+asyncio.get_event_loop().run_forever()
