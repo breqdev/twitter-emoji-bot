@@ -59,9 +59,6 @@ emojis = [
     "⚧️",
 ]
 
-print("".join(emojis))
-exit()
-
 
 @aiocron.crontab("*/1 * * * *")
 async def replace_emoji():
