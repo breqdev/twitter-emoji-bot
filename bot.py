@@ -65,7 +65,7 @@ async def replace_emoji():
     emoji = random.choice(emojis)
     print("Replacing emoji with: " + emoji)
 
-    api.update_profile(name="Brooke Chalmers ⊃ {🏳️‍⚧️, " + emoji + "}")
+    api.update_profile(name="brooke chalmers ⊃ {🏳️‍⚧️, " + emoji + "}")
 
 
 asyncio.get_event_loop().run_forever()
