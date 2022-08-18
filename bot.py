@@ -17,6 +17,7 @@ auth = tweepy.OAuth1UserHandler(
 api = tweepy.API(auth)
 
 emojis = [
+    "🏳️‍⚧️",
     "🦀",
     "🎈",
     "👗",
@@ -62,10 +63,15 @@ emojis = [
 
 @aiocron.crontab("*/1 * * * *")
 async def replace_emoji():
-    emoji = random.choice(emojis)
-    print("Replacing emoji with: " + emoji)
+    emoji = random.sample(emojis, 3)
+    print(f"Replacing emoji with: {emoji}")
 
-    api.update_profile(name="brooke chalmers ⊃ {🏳️‍⚧️, " + emoji + "}")
+    pronouns = "she/they" if random.random() > 0.95 else "she/her"
+
+    api.update_profile(
+        name="brooke chalmers ⊃ {" + ", ".join(emoji) + "}",
+        location=f"{pronouns} - boston & maine",
+    )
 
 
 asyncio.get_event_loop().run_forever()
