@@ -66,10 +66,11 @@ async def replace_emoji():
     emoji = random.sample(emojis, 3)
     print(f"Replacing emoji with: {emoji}")
 
+    name = "bronke" if random.random() > 0.95 else "brooke"
     pronouns = "she/they" if random.random() > 0.95 else "she/her"
 
     api.update_profile(
-        name="brooke chalmers ⊃ {" + ", ".join(emoji) + "}",
+        name=name + " chalmers ⊃ {" + ", ".join(emoji) + "}",
         location=f"{pronouns} - boston & maine",
     )
 
