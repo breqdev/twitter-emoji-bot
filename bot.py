@@ -70,8 +70,8 @@ async def replace_emoji():
     pronouns = "she/they" if random.random() > 0.95 else "she/her"
 
     api.update_profile(
-        name=name + " chalmers ⊃ {" + ", ".join(emoji) + "}",
-        location=f"{pronouns} - boston & maine",
+        name=name + " chalmers ⊃ " + "\u200b".join(emoji),
+        location=f"{pronouns}, boston & maine",
     )
 
 
