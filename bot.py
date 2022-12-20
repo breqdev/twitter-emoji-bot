@@ -4,6 +4,7 @@ import tweepy
 import random
 import asyncio
 import aiocron
+import requests
 
 load_dotenv()
 
@@ -15,6 +16,11 @@ auth = tweepy.OAuth1UserHandler(
 )
 
 api = tweepy.API(auth)
+
+
+session = requests.Session()
+session.headers.update(Authorization=f"Bearer {os.getenv('MASTODON_ACCESS_TOKEN')}")
+
 
 emojis = [
     "🏳️‍⚧️",
@@ -55,10 +61,20 @@ async def replace_emoji():
     name = "bronke" if random.random() > 0.95 else "brooke"
     pronouns = "she/they" if random.random() > 0.95 else "she/her"
 
+    display_name = name + " chalmers ⊃ " + "\u200b".join(emoji)
+
     api.update_profile(
-        name=name + " chalmers ⊃ " + "\u200b".join(emoji),
-        location=f"{pronouns}, boston & maine",
+        name=display_name,
+        location=pronouns + ", @breq@tacobelllabs.net",
     )
+
+    session.patch(
+        "https://tacobelllabs.net/api/v1/accounts/update_credentials",
+        data={
+            "display_name": display_name,
+            "note": f'19. 🏳️‍⚧️. {pronouns}. tinkering with code, chips, math, music. do it all. "the cutest fucking person here" -some girl at a rave. blåhaj.  boston & maine. quartz 💕',
+        },
+    ).raise_for_status()
 
 
 asyncio.get_event_loop().run_forever()
