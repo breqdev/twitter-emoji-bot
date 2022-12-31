@@ -5,8 +5,12 @@ import random
 import asyncio
 import aiocron
 import requests
+import datetime
 
 load_dotenv()
+
+est = datetime.timezone(datetime.timedelta(hours=-5))
+birthday = datetime.datetime(2003, 1, 2, 0, 0, 0, 0, est)
 
 auth = tweepy.OAuth1UserHandler(
     os.getenv("TWITTER_CLIENT_KEY"),
@@ -63,16 +67,19 @@ async def replace_emoji():
 
     display_name = name + " chalmers ⊃ " + "\u200b".join(emoji)
 
+    age = (datetime.datetime.now(est) - birthday).days // 365
+
     api.update_profile(
         name=display_name,
         location=pronouns + ", @breq@tacobelllabs.net",
+        description=f'{age}. 🏳️‍⚧️. tinkering with code, chips, math, music. do it all. "the cutest fucking person here" -some girl at a rave. blåhaj. @breqalt. @piezo_electric 💕',
     )
 
     session.patch(
         "https://tacobelllabs.net/api/v1/accounts/update_credentials",
         data={
             "display_name": display_name,
-            "note": f'19. 🏳️‍⚧️. {pronouns}. tinkering with code, chips, math, music. do it all. "the cutest fucking person here" -some girl at a rave. blåhaj.  boston & maine. quartz 💕',
+            "note": f'{age}. 🏳️‍⚧️. {pronouns}. tinkering with code, chips, math, music. do it all. "the cutest fucking person here" -some girl at a rave. blåhaj.  boston & maine. quartz 💕',
         },
     ).raise_for_status()
 
