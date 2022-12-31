@@ -67,7 +67,7 @@ async def replace_emoji():
 
     display_name = name + " chalmers ⊃ " + "\u200b".join(emoji)
 
-    age = (datetime.datetime.now(est) - birthday).days // 365
+    age = (datetime.datetime.now(est) - birthday).days // 365.2425
 
     api.update_profile(
         name=display_name,
