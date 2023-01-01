@@ -67,7 +67,14 @@ async def replace_emoji():
 
     display_name = name + " chalmers ⊃ " + "\u200b".join(emoji)
 
-    age = int((datetime.datetime.now(est) - birthday).days / 365.2425)
+    now = datetime.datetime.now()  # server runs in UTC
+
+    if now.month > birthday.month or (
+        now.month == birthday.month and now.day >= birthday.day
+    ):
+        age = now.year - birthday.year
+    else:
+        age = now.year - birthday.year - 1
 
     api.update_profile(
         name=display_name,
