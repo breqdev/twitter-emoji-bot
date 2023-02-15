@@ -65,7 +65,8 @@ async def replace_emoji():
     name = "bronke" if random.random() > 0.95 else "brooke"
     pronouns = "she/they" if random.random() > 0.95 else "she/her"
 
-    display_name = name + " chalmers ⊃ " + "\u200b".join(emoji)
+    # display_name = name + " chalmers ⊃ " + "\u200b".join(emoji)
+    display_name = name + " ⊃ {" + ", ".join(emoji) + "}"
 
     now = datetime.datetime.now()  # server runs in UTC
 
