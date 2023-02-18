@@ -80,14 +80,14 @@ async def replace_emoji():
     api.update_profile(
         name=display_name,
         location=pronouns + ", @breq@tacobelllabs.net",
-        description=f'{age}. 🏳️‍⚧️. tinkering with code, chips, math, music. do it all. "the cutest fucking person here" -some girl at a rave. blåhaj. @breqalt. @piezo_electric 💕',
+        description=f'{age}. 🏳️‍⚧️. tinkering with code, chips, math, music. do it all. "the cutest fucking person here" -some girl at a rave. blåhaj. @breqalt.',
     )
 
     session.patch(
         "https://tacobelllabs.net/api/v1/accounts/update_credentials",
         data={
             "display_name": display_name,
-            "note": f'{age}. 🏳️‍⚧️. {pronouns}. tinkering with code, chips, math, music. do it all. "the cutest fucking person here" -some girl at a rave. blåhaj.  boston & maine. quartz 💕',
+            "note": f'{age}. 🏳️‍⚧️. {pronouns}. tinkering with code, chips, math, music. do it all. "the cutest fucking person here" -some girl at a rave. blåhaj.  boston & maine.',
         },
     ).raise_for_status()
 
