@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
-import tweepy
+
+# import tweepy
 import random
 import asyncio
 import aiocron
@@ -12,14 +13,14 @@ load_dotenv()
 est = datetime.timezone(datetime.timedelta(hours=-5))
 birthday = datetime.datetime(2003, 1, 2, 0, 0, 0, 0, est)
 
-auth = tweepy.OAuth1UserHandler(
-    os.getenv("TWITTER_CLIENT_KEY"),
-    os.getenv("TWITTER_CLIENT_SECRET"),
-    os.getenv("TWITTER_ACCESS_TOKEN"),
-    os.getenv("TWITTER_ACCESS_SECRET"),
-)
+# auth = tweepy.OAuth1UserHandler(
+#     os.getenv("TWITTER_CLIENT_KEY"),
+#     os.getenv("TWITTER_CLIENT_SECRET"),
+#     os.getenv("TWITTER_ACCESS_TOKEN"),
+#     os.getenv("TWITTER_ACCESS_SECRET"),
+# )
 
-api = tweepy.API(auth)
+# api = tweepy.API(auth)
 
 
 session = requests.Session()
@@ -77,11 +78,11 @@ async def replace_emoji():
     else:
         age = now.year - birthday.year - 1
 
-    api.update_profile(
-        name=display_name,
-        location=pronouns + ", @breq@tacobelllabs.net",
-        description=f'{age}. 🏳️‍⚧️. tinkering with code, chips, math, music. do it all. "the cutest fucking person here" -some girl at a rave. blåhaj. @breqalt.',
-    )
+    # api.update_profile(
+    #     name=display_name,
+    #     location=pronouns + ", @breq@tacobelllabs.net",
+    #     description=f'{age}. 🏳️‍⚧️. tinkering with code, chips, math, music. do it all. "the cutest fucking person here" -some girl at a rave. blåhaj. @breqalt.',
+    # )
 
     session.patch(
         "https://tacobelllabs.net/api/v1/accounts/update_credentials",
